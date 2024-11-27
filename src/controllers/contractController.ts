@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import { Contract } from '../models/Contract';
-import { Op } from 'sequelize';
 
 // Criar contrato
 export const createContract = async (
@@ -25,7 +24,21 @@ export const createContract = async (
   }
 };
 
-// Listar contratos por perfil (clientId ou contractorId)
+// Listar todos os contratos
+export const getAllContracts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const contracts = await Contract.findAll(); // Busca todos os contratos no banco
+    res.status(200).json(contracts); // Retorna os contratos encontrados
+  } catch (error) {
+    next(error); // Passa o erro para o middleware de tratamento
+  }
+};
+
+// Listar contratos por perfil
 export const getContractsByProfile = async (
   req: Request,
   res: Response,
@@ -41,13 +54,10 @@ export const getContractsByProfile = async (
       return;
     }
 
-    // Busca contratos onde o perfil é clientId ou contractorId
+    // Busca contratos associados ao perfil com o ID fornecido
     const contracts = await Contract.findAll({
       where: {
-        [Op.or]: [
-          { clientId: numericProfileId },
-          { contractorId: numericProfileId },
-        ],
+        clientId: numericProfileId,
       },
     });
 
@@ -61,20 +71,6 @@ export const getContractsByProfile = async (
     res.status(200).json(contracts);
   } catch (error) {
     next(error);
-  }
-};
-
-// Listar todos os contratos
-export const getAllContracts = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
-  try {
-    const contracts = await Contract.findAll(); // Busca todos os contratos no banco
-    res.status(200).json(contracts); // Retorna os contratos encontrados
-  } catch (error) {
-    next(error); // Passa o erro para o middleware de tratamento
   }
 };
 
@@ -94,13 +90,10 @@ export const countContractsByProfile = async (
       return;
     }
 
-    // Contar os contratos onde clientId ou contractorId corresponde ao profileId
+    // Contar os contratos onde clientId corresponde ao profileId
     const contractCount = await Contract.count({
       where: {
-        [Op.or]: [
-          { clientId: numericProfileId },
-          { contractorId: numericProfileId },
-        ],
+        clientId: numericProfileId,
       },
     });
 

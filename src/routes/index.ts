@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createJob, getUnpaidJobs, deleteJob, getAllJobsByContract } from '../controllers/jobController';
+import { createJob, getUnpaidJobs, deleteJob } from '../controllers/jobController';
 import { createProfile } from '../controllers/profileController';
 import { depositToProfile } from '../controllers/depositController';
 import {
@@ -24,9 +24,5 @@ router.get('/contracts', getAllContracts); // Rota para listar todos os contrato
 router.get('/contracts/count/:profileId', countContractsByProfile); // Contar contratos por perfil
 router.get('/contracts/profile/:profileId', getContractsByProfile); // Listar contratos por perfil
 router.get('/contracts/count/profile/:profileId', countContractsByProfile); // Contar contratos por perfil
-router.post('/deposits/:profileId', depositToProfile); // Realizar depósito para um perfil
-router.get('/jobs/unpaid/:contractId', getUnpaidJobs);
-router.get('/jobs/:contractId', getAllJobsByContract);
-router.delete('/jobs/:jobId', deleteJob);
 
 export default router;
