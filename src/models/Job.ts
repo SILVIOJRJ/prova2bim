@@ -10,6 +10,7 @@ export class Job extends Model {
   public paymentDate!: Date | null;
   public price!: number;
   public paid!: boolean;
+  public balance!: number; // Novo campo balance
 }
 
 Job.init({
@@ -46,6 +47,12 @@ Job.init({
     allowNull: false,
     defaultValue: false,
   },
+  balance: {
+    type: DataTypes.DOUBLE, // Tipo do campo
+    allowNull: false,
+    defaultValue: 0, // Valor inicial padrão
+  },
+  
 }, {
   sequelize,
   modelName: 'Job',

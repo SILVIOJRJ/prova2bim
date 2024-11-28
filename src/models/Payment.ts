@@ -1,41 +1,40 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database';
-import { Job } from './Job';
 
 export class Payment extends Model {
   public id!: number;
   public jobId!: number;
+  public amount!: number;
   public operationDate!: Date;
-  public paymentValue!: number;
 }
 
-Payment.init({
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  jobId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'Job',
-      key: 'id',
+Payment.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
     },
-    allowNull: false,
+    jobId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Job',
+        key: 'id',
+      },
+    },
+    amount: {
+      type: DataTypes.DOUBLE,
+      allowNull: false,
+    },
+    operationDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
   },
-  operationDate: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
-  paymentValue: {
-    type: DataTypes.DOUBLE,
-    allowNull: false,
-  },
-}, {
-  sequelize,
-  modelName: 'Payment',
-  tableName: 'PAYMENT',
-  timestamps: false,
-});
-
-Payment.belongsTo(Job, { foreignKey: 'jobId' });
+  {
+    sequelize,
+    modelName: 'Payment',
+    tableName: 'PAYMENT',
+    timestamps: false,
+  }
+);

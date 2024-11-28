@@ -17,7 +17,7 @@ Este projeto foi desenvolvido para atender os requisitos da prova.
 
 2. **Rodar migrações do banco**
    ```bash
-   npx sequelize-cli db:migrate
+   npx sequelize-cli db:migrate '(somente se houver problemas, fazer o npm start primeiro)'
    ```
 
 3. **Iniciar o servidor**
@@ -26,6 +26,9 @@ Este projeto foi desenvolvido para atender os requisitos da prova.
    ```
 
 4. **Testar os endpoints**
-   - **Listar Contratos por Perfil**: `GET /contracts/:profileId`
-   - **Fazer Depósito**: `POST /deposits` (Body: `{ "profileId": 1, "amount": 100 }`)
-   - **Listar Trabalhos Não Pagos**: `GET /jobs/unpaid/:contractId`
+   - **Listar Contratos por Perfil**: `GET http://localhost:3000/api/contracts/profile/2` - Apenas exemplo. O arquivo 'database.sqlite' lista as tabelas que já foram preenchidas.
+   (Apenas o id 2 tem 2 contratos para conferir)
+   - **Fazer Depósito**: `POST /deposits http://localhost:3000/api/deposits/1` (Body: { "profileId": 1, "amount": 100 })
+   - **Listar Trabalhos Não Pagos**: `GET http://localhost:3000/api/jobs/unpaid/2` .
+
+
