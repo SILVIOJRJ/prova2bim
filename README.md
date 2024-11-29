@@ -1,41 +1,28 @@
-# Projeto de Gerenciamento de Contratos
 
-Este projeto é uma aplicação que gerencia contratos, perfis e trabalhos utilizando **Node.js** e **SQLite**. Ele foi desenvolvido com **Sequelize** para facilitar a interação com o banco de dados.
+# Prova - Gerência de Configuração e Evolução de Software
 
----
+Este projeto foi desenvolvido para atender os requisitos da prova.
 
-## 📋 Pré-requisitos
+## Requisitos Atendidos
+1. Listar contratos de um perfil.
+2. Fazer depósito em um perfil.
+3. Listar trabalhos não pagos de um contrato.
 
-Antes de começar, certifique-se de ter o seguinte instalado na sua máquina:
+## Instruções para Rodar
 
-- **Node.js** (versão 14 ou superior)
-- **NPM** (geralmente instalado junto com o Node.js)
+1. **Instalar dependências**
+   ```bash
+   npm install
+   ```
 
----
+2. **Rodar migrações do banco**
+   ```bash
+   npx sequelize-cli db:migrate
+   ```
 
-## 🚀 Como Executar o Projeto
-
-### 1. Instale as Dependências
-
-Na raiz do projeto, rode o comando:
-```bash
-npm install
-```
-
-### 2. Inicie o Servidor
-
-Para iniciar o servidor, execute:
-```bash
-npm start
-```
-
-O servidor estará disponível em:  
-**URL Base**: `http://localhost:3000`
-
----
-
-## 📦 Endpoints Disponíveis
-
+3. **Iniciar o servidor**
+   ```bash
+   npm start
 ### 1. Listar Todos os Contratos de um Perfil
 
 **Rota**: `GET /api/contracts/profiles/:profileId/contracts`  
@@ -47,7 +34,7 @@ O servidor estará disponível em:
 
 ---
 
-### 2. Realizar Depósito para um Perfil
+### . Realizar Depósito para um Perfil
 
 **Rota**: `POST /api/deposits`  
 **Descrição**: Adiciona um valor ao saldo de um perfil específico.  
@@ -104,7 +91,7 @@ O servidor estará disponível em:
 
 ---
 
-## 🛠️ Como Testar os Endpoints no Postman
+##  Endpoints no Postman
 
 1. **Inicie o servidor**:  
    Certifique-se de que o servidor está rodando usando o comando `npm start`.
@@ -117,44 +104,4 @@ O servidor estará disponível em:
 
 ---
 
-## 🗂️ Estrutura do Projeto
 
-```
-├── scripts/
-│   └── seedData.js        # Script para popular o banco de dados
-├── src/
-│   ├── config/            # Configurações (ex.: conexão com o banco)
-│   ├── controllers/       # Controladores (lógica das rotas)
-│   ├── models/            # Modelos do banco de dados
-│   ├── routes/            # Arquivo de rotas da aplicação
-│   ├── services/          # Serviços adicionais
-├── db.sqlite              # Arquivo do banco de dados SQLite
-├── .env                   # Variáveis de ambiente
-├── server.js              # Arquivo principal do servidor
-├── app.js                 # Configuração inicial do app
-├── package.json           # Gerenciador de dependências e scripts
-```
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- **Node.js**: Ambiente de execução para JavaScript.
-- **Express**: Framework web para Node.js.
-- **Sequelize**: ORM para interagir com o banco de dados.
-- **SQLite**: Banco de dados leve e rápido.
-- **dotenv**: Gerenciamento de variáveis de ambiente.
-
----
-
-## ⚠️ Dicas e Cuidados
-
-- O arquivo `db.sqlite` é o banco de dados utilizado pela aplicação.  
-  Caso você precise resetá-lo, basta deletar o arquivo e rodar o endpoint `/api/seed` para recriar os dados.
-
----
-
-## 📖 Autor
-
-- **Andrick**  
-  GitHub: [AndrickDev](https://github.com/AndrickDev)
